@@ -1,5 +1,7 @@
-FROM  python:3.7.4-alpine3.10
+FROM openjdk
 
-RUN pip install plantuml==0.3.0
+COPY plantuml.1.2020.16.jar /plantuml.jar
 
-ENTRYPOINT for f in **/*.plantuml; do echo $f; python -m plantuml $f; done
+WORKDIR /source
+
+ENTRYPOINT ["java", "-jar", "/plantuml.jar"]
